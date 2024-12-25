@@ -1,0 +1,24 @@
+{
+  "manifest_version": 3,
+  "name": "AI Article Enhancer",
+  "version": "1.0",
+  "permissions": ["scripting", "activeTab", "storage"],
+  "host_permissions": ["<all_urls>"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*.nbcnews.com/*"],
+      "js": ["content.js"]
+    }
+  ]
+}
