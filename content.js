@@ -1,18 +1,18 @@
 // Extract article content (paragraphs, headers) from the webpage
 const extractArticleContent = () => {
-    const elements = document.querySelectorAll("p, h1, h2, h3");
+    const elements = document.querySelectorAll("p");
     const content = Array.from(elements).map(el => el.textContent).join("\n");
     return content;
 };
 
-// Send the extracted content to the background script
-const articleContent = extractArticleContent();
-chrome.runtime.sendMessage({ action: "processArticle", data: articleContent });
-
-
-// Listen for a response from the background script
+// Listen for a message from the popup to extract content
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-    if (message.action === "highlightText") {
+    if (message.action === "extractContent") {
+        console.log("[DEBUG] Extracting content from the webpage...");
+        const articleContent = extractArticleContent();
+        sendResponse({ content: articleContent });
+    } else if (message.action === "highlightContent") {
+        console.log("[DEBUG] Highlighting processed content...");
         // Highlight the processed text on the webpage
         const processedText = message.data
             .split("\n")

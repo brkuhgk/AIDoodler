@@ -4,13 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <title>AI Article Enhancer</title>
+    <title>AI Article Processor</title>
 </head>
 <body>
-<div id="content">
-    <h1>AI Article Enhancer</h1>
-    <p>Click to process the current article.</p>
-    <button id="processButton">Process Article</button>
+<div id="container">
+    <h1>AI Article Processor</h1>
+    <button id="processArticle">Process Article</button>
+    <div id="loading" class="hidden">
+        <p>Processing... Please wait.</p>
+    </div>
+    <div id="result" class="hidden">
+        <h2>Processed Output</h2>
+        <p id="outputText"></p>
+    </div>
 </div>
 <script src="popup.js"></script>
 </body>
